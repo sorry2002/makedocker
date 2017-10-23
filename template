@@ -1,0 +1,10 @@
+FROM __base__
+
+RUN apk add --update python3 py3-pip __pkgdeps__
+
+m4_ifelse(__pipdeps__, `', `', `RUN pip3 install __pipdeps__')
+
+COPY __srcdir__ __destdir__/__projectname__
+
+EXPOSE __ports__
+CMD ["python3", "__destdir__/__projectname__" ]
